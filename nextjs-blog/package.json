@@ -12,7 +12,9 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
+    "node-sass": "^5.0.0",
     "react": "^16.13.1"
   }
 }

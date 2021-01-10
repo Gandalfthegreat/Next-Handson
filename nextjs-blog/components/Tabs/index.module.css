@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: rem(32);
+  margin-bottom: rem(20);
+}
+
+.container .defaultTab {
+  font-family: Gilroy-Medium;
+  color: #888;
+}
+
+.container .activeTab {
+  font-family: Roboto-Bold;
+  color: black;
+  position: relative;
+}
+
+.container .activeTab:after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: rem(114);
+  height: rem(8);
+  position: absolute;
+  top: rem(53);
+  left: 50%;
+  border-radius: rem(5);
+  transform: translateX(-50%);
+}

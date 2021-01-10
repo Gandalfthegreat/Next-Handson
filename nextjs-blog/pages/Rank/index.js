@@ -1,34 +1,52 @@
 import React from "react";
 import RankBody from "../../components/RankBody";
-export default function Rank() {
-  // TO DO: 用axios.get(URL) 获取接口数据
-  const rankBodyData = Array(10)
-    .fill(0)
-    .map((_, index) => {
-      return {
-        userId: index,
-        body: "this is the body",
-        title: "title"
-      };
-    });
-  const tabsArray = Array(2)
-    .fill(0)
-    .map(() => {
-      return {
-        tabTitle: "rank",
-        tabContent: "rank body"
-      };
-    });
-  return (
-    <>
-      <h1>Hello Next</h1>
-      {rankBodyData.map(item => {
-        return (
-          <RankBody userId={item.userId} body={item.body} title={item.title} />
-        );
-      })}
-      // TO DO2:实现Tabs组件
-      <Tabs tabsArray={tabsArray}></Tabs>
-    </>
-  );
+
+import { getPosts } from "../../api/RankBody/query.js";
+import Tabs from "../../components/Tabs";
+export default class Rank extends React.Component {
+  constructor() {
+    super();
+    this.rankBodyData = [];
+    this.tabsArray = [];
+    this.state = {
+      rankData: []
+    };
+  }
+
+  componentDidMount() {
+    this.rankBodyData = Array(10)
+      .fill(0)
+      .map((_, index) => {
+        return {
+          userId: index,
+          body: "this is the body",
+          title: "title"
+        };
+      });
+
+    this.setState({ rankData: getPosts() });
+  }
+
+  render() {
+    const tabsArray = Array(2)
+      .fill(0)
+      .map((_, index) => {
+        return {
+          title: `title${index}`,
+          content: "rank body"
+        };
+      });
+    console.log(tabsArray);
+    return (
+      <>
+        <h1>Hello Next</h1>
+        {[].map(item => {
+          return (
+            <RankBody userId={item.id} body={item.body} title={item.title} />
+          );
+        })}
+        <Tabs tabsArray={tabsArray}></Tabs>
+      </>
+    );
+  }
 }
